@@ -1,17 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Student
 
-# View all students
+
 def student_list(request):
     students = Student.objects.all()
     return render(request, 'student_records/student_list.html', {'students': students})
 
-# View a single student
+
 def student_detail(request, student_id):
     student = get_object_or_404(Student, id=student_id)
     return render(request, 'student_records/student_detail.html', {'student': student})
 
-# Add a new student
+
 def student_add(request):
     if request.method == "POST":
         name = request.POST.get('name')
@@ -28,7 +28,7 @@ def student_add(request):
 
     return render(request, 'student_records/student_form.html')
 
-# Edit a student
+
 def student_edit(request, student_id):
     student = get_object_or_404(Student, id=student_id)
 
@@ -46,7 +46,7 @@ def student_edit(request, student_id):
 
     return render(request, 'student_records/student_form.html', {'student': student})
 
-# Delete a student
+
 def student_delete(request, student_id):
     student = get_object_or_404(Student, id=student_id)
     student.delete()
